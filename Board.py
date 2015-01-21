@@ -22,11 +22,15 @@ class Board:
 
     def button_1_callback(self, channel):
         print "Button 1 interrupt triggered"
+        self.toggle_led()
+
+    def toggle_led(self):
         if (self.LED_isLit):
             self.LED_isLit = 0
         else:
             self.LED_isLit = 1
         GPIO.output(self.LED_PIN, self.LED_isLit)
+
 
 # Testing
 if __name__ == "__main__":
