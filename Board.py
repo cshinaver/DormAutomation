@@ -31,6 +31,9 @@ class Board:
             self.LED_isLit = 1
         GPIO.output(self.LED_PIN, self.LED_isLit)
 
+    def cleanup(self):
+        GPIO.cleanup()
+
 
 # Testing
 if __name__ == "__main__":
