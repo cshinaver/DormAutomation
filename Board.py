@@ -44,6 +44,9 @@ class Board:
             self.is_outlet_on = 1
         GPIO.output(self.OUTLET_PIN, is_outlet_on)
 
+    def cleanup(self):
+        GPIO.cleanup()
+
 
 # Testing
 if __name__ == "__main__":

@@ -12,8 +12,11 @@ def index():
         return render_template('index.html')
     elif request.method == 'POST':
         bd.toggle_outlet()
-        return "Toggled LED"
+        return render_template('index.html')
 
 if __name__ == '__main__':
     bd.start_interrupts()
-    app.run(host='0.0.0.0')
+    try:
+        app.run(host='0.0.0.0')
+    except KeyboardInterrupt:
+        bd.cleanup()
