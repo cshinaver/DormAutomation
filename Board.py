@@ -2,20 +2,23 @@ import RPi.GPIO as GPIO
 
 
 class Board:
-    BUTTON_1_PIN = 8
     LED_PIN = 10
     OUTLET_PIN = 12
+    STROBE_PIN = 8
     is_led_on = 0
     is_outlet_on = 0
+    is_strobing = 0
 
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.BUTTON_1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        #GPIO.setup(self.BUTTON_1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.STROBE_PIN, GPIO.OUT)
         GPIO.setup(self.LED_PIN, GPIO.OUT)
         GPIO.setup(self.OUTLET_PIN, GPIO.OUT)
 
         GPIO.output(self.LED_PIN, self.is_led_on)
         GPIO.output(self.OUTLET_PIN, self.is_outlet_on)
+        GPIO.output(self.STROBE_PIN, self.is_strobing)
 
     def start_interrupts(self):
         # Button 1 interrupt
@@ -43,6 +46,13 @@ class Board:
         else:
             self.is_outlet_on = 1
         GPIO.output(self.OUTLET_PIN, is_outlet_on)
+
+    def toggle_strobe(self):
+        if (self.is_strobing):
+            self.is_strobing = 0
+        else:
+            self.is_strobing = 1
+        GPIO.output(self.STROBE_PIN, is_strobing)
 
     def cleanup(self):
         GPIO.cleanup()
