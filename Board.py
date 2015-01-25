@@ -18,6 +18,7 @@ class Board:
         GPIO.output(self.OUTLET_PIN, self.is_outlet_on)
 
     def start_interrupts(self):
+        pass
         # Button 1 interrupt
         #GPIO.add_event_detect(
         #    self.BUTTON_1_PIN,
@@ -42,7 +43,7 @@ class Board:
             self.is_outlet_on = 0
         else:
             self.is_outlet_on = 1
-        GPIO.output(self.OUTLET_PIN, is_outlet_on)
+        GPIO.output(self.OUTLET_PIN, self.is_outlet_on)
 
     def cleanup(self):
         GPIO.cleanup()
@@ -52,6 +53,7 @@ class Board:
 if __name__ == "__main__":
     bae_board = Board()
     bae_board.start_interrupts()
+    bae_board.toggle_outlet()
     try:
         while (1):
             pass
