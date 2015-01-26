@@ -18,7 +18,7 @@ def index():
 @app.route('/strobe', methods=['POST'])
 def strobe():
     bd.toggle_strobe()
-    return "Strobing"
+    return render_template('index.html')
 
 if __name__ == '__main__':
     bd.start_interrupts()
