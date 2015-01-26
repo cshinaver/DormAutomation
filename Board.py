@@ -53,7 +53,7 @@ class Board:
             self.is_strobing = 0
         else:
             self.is_strobing = 1
-        GPIO.output(self.STROBE_PIN, is_strobing)
+        GPIO.output(self.STROBE_PIN, self.is_strobing)
 
     def cleanup(self):
         GPIO.cleanup()
